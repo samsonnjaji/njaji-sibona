@@ -1,0 +1,316 @@
+---
+import { site, heroHook, heroStats } from "../data/site";
+---
+
+<section id="top" class="hero" aria-labelledby="hero-heading">
+	<div class="shell">
+		<div class="left">
+			<p class="avail">
+				<span class="pulse" aria-hidden="true" />
+				Open to collaboration
+			</p>
+			<h1 id="hero-heading" class="title">
+				<span class="title-line">{site.author}</span>
+			</h1>
+			<p class="roles">
+				{site.roleLines.map((r) => (
+					<span class="role-pill">{r}</span>
+				))}
+			</p>
+			<p class="hook">{heroHook}</p>
+
+			<div class="cta-row">
+				<a class="btn primary" href={`mailto:${site.email}`}>
+					Get in touch
+				</a>
+				<a class="btn ghost" href={site.social.github} target="_blank" rel="noopener noreferrer">
+					View GitHub
+				</a>
+			</div>
+
+			<ul class="stats" aria-label="Highlights">
+				{
+					heroStats.map((s) => (
+						<li>
+							<span class="stat-val">{s.value}</span>
+							<span class="stat-lab">{s.label}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div class="right" aria-hidden="true">
+			<div class="orbit">
+				<div class="ring r1" />
+				<div class="ring r2" />
+				<div class="core">
+					<span class="mono">&lt;/&gt;</span>
+					<span class="sub">build · ship · learn</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 2.5rem 1.35rem 1rem;
+	}
+
+	.shell {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	@media (min-width: 900px) {
+		.shell {
+			grid-template-columns: 1fr minmax(260px, 1fr);
+			gap: 3rem;
+		}
+	}
+
+	.avail {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin: 0 0 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.pulse {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--accent);
+		box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5);
+		animation: pulse 2.2s ease-out infinite;
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.45);
+		}
+		50% {
+			box-shadow: 0 0 0 10px rgba(34, 211, 238, 0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.pulse {
+			animation: none;
+		}
+	}
+
+	.title {
+		margin: 0 0 1rem;
+		font-size: clamp(2.15rem, 5vw, 3.15rem);
+		font-weight: 700;
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+	}
+
+	.title-line {
+		background: linear-gradient(135deg, #fafafa 0%, #a5f3fc 42%, #fbbf24 95%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.roles {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin: 0 0 1.15rem;
+	}
+
+	.role-pill {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 500;
+		padding: 0.35rem 0.65rem;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid var(--border-strong);
+		color: var(--text-muted);
+	}
+
+	.hook {
+		margin: 0 0 1.5rem;
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: var(--text-muted);
+		max-width: 46ch;
+	}
+
+	.cta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin-bottom: 2rem;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1.25rem;
+		border-radius: 10px;
+		font-family: var(--font-mono);
+		font-size: 0.82rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		border: 1px solid transparent;
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.btn:hover {
+		transform: translateY(-1px);
+	}
+
+	.btn.primary {
+		background: linear-gradient(135deg, #0891b2, #22d3ee);
+		color: #0c0a09;
+		box-shadow: 0 8px 24px rgba(34, 211, 238, 0.25);
+	}
+
+	.btn.primary:hover {
+		color: #0c0a09;
+		box-shadow: 0 10px 28px rgba(34, 211, 238, 0.35);
+	}
+
+	.btn.ghost {
+		background: transparent;
+		border-color: var(--border-strong);
+		color: var(--text-muted);
+	}
+
+	.btn.ghost:hover {
+		border-color: rgba(34, 211, 238, 0.4);
+		color: var(--accent);
+	}
+
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.stats li {
+		padding: 0.85rem 1rem;
+		border-radius: var(--radius-sm);
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid var(--border);
+	}
+
+	.stat-val {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--text);
+		line-height: 1.35;
+		margin-bottom: 0.25rem;
+	}
+
+	.stat-lab {
+		font-size: 0.68rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--text-dim);
+	}
+
+	.right {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 260px;
+	}
+
+	.orbit {
+		position: relative;
+		width: min(260px, 100%);
+		aspect-ratio: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.ring {
+		position: absolute;
+		border-radius: 50%;
+		border: 1px solid var(--border-strong);
+	}
+
+	.r1 {
+		inset: 0;
+		opacity: 0.9;
+	}
+
+	.r2 {
+		inset: 12%;
+		border-color: rgba(34, 211, 238, 0.35);
+		opacity: 0.6;
+		animation: spin 28s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.r2 {
+			animation: none;
+		}
+	}
+
+	.core {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: radial-gradient(circle at 30% 20%, rgba(34, 211, 238, 0.12), transparent 55%),
+			var(--surface);
+		border: 1px solid var(--border-strong);
+		border-radius: 50%;
+		width: 46%;
+		aspect-ratio: 1;
+		box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+	}
+
+	.mono {
+		font-family: var(--font-mono);
+		font-size: 1.35rem;
+		font-weight: 600;
+		color: var(--accent);
+	}
+
+	.sub {
+	 font-family: var(--font-mono);
+		font-size: 0.58rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--text-dim);
+		margin-top: 0.35rem;
+	}
+</style>

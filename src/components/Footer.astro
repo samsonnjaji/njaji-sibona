@@ -1,0 +1,25 @@
+---
+import { site } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<p>
+		© {year}{" "}
+		{site.author}. Crafted with <span aria-label="love">💜</span> and code.
+	</p>
+</footer>
+
+<style>
+	.footer {
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 1.75rem 1.35rem 2.5rem;
+		border-top: 1px solid var(--border-strong);
+		font-size: 0.82rem;
+		font-family: var(--font-mono);
+		color: var(--text-dim);
+		text-align: center;
+	}
+</style>

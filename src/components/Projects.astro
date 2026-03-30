@@ -1,0 +1,251 @@
+---
+import { projects } from "../data/site";
+
+type Proj = (typeof projects)[number];
+const hasLink = (p: Proj): p is Proj & { primaryUrl: string; primaryLabel: string } =>
+	"primaryUrl" in p && Boolean((p as Proj & { primaryUrl?: string }).primaryUrl);
+
+const isNda = (p: Proj): boolean => "nda" in p && Boolean((p as Proj & { nda?: boolean }).nda);
+const isInDevelopment = (p: Proj): boolean =>
+	"inDevelopment" in p && Boolean((p as Proj & { inDevelopment?: boolean }).inDevelopment);
+
+const isFeatured = (p: Proj): boolean =>
+	"featured" in p && Boolean((p as Proj & { featured?: boolean }).featured);
+---
+
+<section id="projects" class="section band" aria-labelledby="projects-heading">
+	<div class="contain">
+		<span class="section-kicker">Selected work</span>
+		<h2 id="projects-heading" class="section-title">Products & projects</h2>
+		<p class="section-lead">
+			Flagship work first — then R&amp;D, confidential builds, and experiments. Same bar for UX, APIs,
+			and data.
+		</p>
+		<div class="grid">
+			{
+				projects.map((p) => (
+					<article class:list={["card", isFeatured(p) && "is-featured"]}>
+						{isFeatured(p) ? <span class="ribbon">Featured</span> : null}
+						<h3 class="card-title">{p.title}</h3>
+						<p class="card-desc">{p.description}</p>
+						<ul class="tags">
+							{p.tags.map((t) => (
+								<li>{t}</li>
+							))}
+						</ul>
+						{hasLink(p) ? (
+							<div class="actions">
+								<a class="cta" href={p.primaryUrl} target="_blank" rel="noopener noreferrer">
+									{p.primaryLabel}
+								</a>
+								{"githubUrl" in p &&
+								typeof (p as { githubUrl?: string }).githubUrl === "string" &&
+								(p as { githubUrl: string }).githubUrl ? (
+									<a
+										class="cta secondary"
+										href={(p as { githubUrl: string }).githubUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										{(p as { githubLabel: string }).githubLabel}
+									</a>
+								) : null}
+							</div>
+						) : isNda(p) ? (
+							<p class="foot nda">
+								<span class="nda-badge" aria-hidden="true">Confidential</span>
+								Code and client details are under NDA — no public repository.
+							</p>
+						) : isInDevelopment(p) ? (
+							<p class="foot soon">In development — details shared selectively.</p>
+						) : (
+							<p class="foot soon">Details on request.</p>
+						)}
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.section {
+		scroll-margin-top: 5rem;
+	}
+
+	.contain {
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 3rem 1.35rem 2.5rem;
+	}
+
+	.section-kicker {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.section-title {
+		margin: 0 0 0.5rem;
+		font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+		font-weight: 650;
+		letter-spacing: -0.03em;
+	}
+
+	.section-lead {
+		margin: 0 0 1.75rem;
+		color: var(--text-muted);
+		font-size: 1rem;
+		line-height: 1.65;
+		max-width: 56ch;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1rem;
+	}
+
+	.card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: 1.35rem 1.4rem;
+		background: var(--bg-elevated);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius);
+		min-height: 100%;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+	}
+
+	.card:hover {
+		border-color: rgba(34, 211, 238, 0.22);
+		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+	}
+
+	.is-featured {
+		grid-column: 1 / -1;
+		padding: 1.65rem 1.5rem;
+		background: linear-gradient(155deg, rgba(34, 211, 238, 0.09) 0%, var(--bg-elevated) 45%);
+		border-color: rgba(34, 211, 238, 0.28);
+	}
+
+	.is-featured .card-title {
+		font-size: 1.25rem;
+	}
+
+	.ribbon {
+		display: inline-block;
+		align-self: flex-start;
+		margin-bottom: 0.75rem;
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		padding: 0.35rem 0.65rem;
+		border-radius: 6px;
+		background: rgba(251, 191, 36, 0.12);
+		border: 1px solid rgba(251, 191, 36, 0.35);
+		color: var(--accent-2);
+	}
+
+	.card-title {
+		margin: 0 0 0.5rem;
+		font-size: 1.08rem;
+		font-weight: 650;
+	}
+
+	.card-desc {
+		margin: 0 0 1rem;
+		flex: 1;
+		font-size: 0.95rem;
+		line-height: 1.62;
+		color: var(--text-muted);
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		list-style: none;
+		margin: 0 0 1rem;
+		padding: 0;
+	}
+
+	.tags li {
+		font-size: 0.72rem;
+		font-weight: 500;
+		font-family: var(--font-mono);
+		padding: 0.3rem 0.55rem;
+		border-radius: 6px;
+		background: rgba(0, 0, 0, 0.35);
+		border: 1px solid var(--border-strong);
+		color: var(--text-muted);
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem 1.25rem;
+		margin-top: auto;
+	}
+
+	.cta {
+		align-self: flex-start;
+		font-size: 0.9rem;
+		font-weight: 600;
+		padding: 0.5rem 0;
+		border-bottom: 2px solid var(--accent-dim);
+		color: var(--accent);
+	}
+
+	.cta:hover {
+		border-bottom-color: var(--accent-hover);
+		color: var(--accent-hover);
+	}
+
+	.cta.secondary {
+		border-bottom-color: rgba(34, 211, 238, 0.35);
+		font-weight: 500;
+		font-size: 0.86rem;
+	}
+
+	.foot {
+		margin: 0;
+		font-size: 0.85rem;
+		line-height: 1.5;
+		color: var(--text-muted);
+	}
+
+	.soon {
+		font-style: italic;
+	}
+
+	.nda {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.nda-badge {
+		display: inline-block;
+		align-self: flex-start;
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		padding: 0.25rem 0.5rem;
+		border-radius: 6px;
+		background: var(--accent-muted);
+		border: 1px solid rgba(34, 211, 238, 0.35);
+		color: var(--accent);
+		font-style: normal;
+	}
+</style>

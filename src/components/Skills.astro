@@ -1,0 +1,156 @@
+---
+import { skillGroups } from "../data/site";
+---
+
+<section id="skills" class="section band-alt" aria-labelledby="skills-heading">
+	<div class="contain">
+		<span class="section-kicker">Stack</span>
+		<h2 id="skills-heading" class="section-title">Tools & depth</h2>
+		<p class="section-lead">
+			A real portfolio shows range: languages, frameworks, data, cloud, and how you work with others —
+			not a single column of buzzwords.
+		</p>
+		<div class="bento">
+			{
+				skillGroups.map((group) => (
+					<article
+						class:list={[
+							"card",
+							group.bento === "hero" && "is-hero",
+							group.bento === "wide" && "is-wide",
+						]}
+					>
+						<h3 class="card-title">{group.title}</h3>
+						<p class="card-sub">{group.subtitle}</p>
+						<ul class="tags">
+							{group.tags.map((t) => (
+								<li>{t}</li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.section {
+		scroll-margin-top: 5rem;
+	}
+
+	.contain {
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 3rem 1.35rem;
+	}
+
+	.section-kicker {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.section-title {
+		margin: 0 0 0.5rem;
+		font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+		font-weight: 650;
+		letter-spacing: -0.03em;
+	}
+
+	.section-lead {
+		margin: 0 0 2rem;
+		color: var(--text-muted);
+		font-size: 1rem;
+		line-height: 1.65;
+		max-width: 56ch;
+	}
+
+	.bento {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		gap: 1rem;
+	}
+
+	.card {
+		grid-column: span 12;
+		padding: 1.25rem 1.35rem;
+		background: var(--bg-elevated);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius);
+		transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+	}
+
+	@media (min-width: 700px) {
+		.card {
+			grid-column: span 6;
+		}
+
+		.is-hero {
+			grid-column: span 12;
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+
+		@media (min-width: 900px) {
+			.is-hero {
+				grid-template-columns: 220px 1fr;
+				align-items: start;
+			}
+		}
+
+		.is-wide {
+			grid-column: span 12;
+		}
+	}
+
+	.card:hover {
+		border-color: rgba(34, 211, 238, 0.28);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+		transform: translateY(-2px);
+	}
+
+	.is-hero {
+		background: linear-gradient(145deg, rgba(34, 211, 238, 0.06), var(--bg-elevated));
+		border-color: rgba(34, 211, 238, 0.2);
+	}
+
+	.card-title {
+		margin: 0 0 0.35rem;
+		font-size: 1.08rem;
+		font-weight: 650;
+	}
+
+	.card-sub {
+		margin: 0 0 0.85rem;
+		font-size: 0.84rem;
+		line-height: 1.45;
+		color: var(--text-muted);
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.tags li {
+		font-size: 0.76rem;
+		font-weight: 500;
+		padding: 0.32rem 0.62rem;
+		border-radius: 8px;
+		background: rgba(0, 0, 0, 0.35);
+		border: 1px solid var(--border);
+		color: var(--text-muted);
+		font-family: var(--font-mono);
+	}
+</style>

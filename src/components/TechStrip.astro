@@ -1,0 +1,76 @@
+---
+import { stackMarquee } from "../data/site";
+
+const doubled = [...stackMarquee, ...stackMarquee];
+---
+
+<div class="marquee-wrap" aria-hidden="true">
+	<div class="marquee-inner">
+		{
+			doubled.map((t) => (
+				<span class="item">{t}</span>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.marquee-wrap {
+		overflow: hidden;
+		border-top: 1px solid var(--border-strong);
+		border-bottom: 1px solid var(--border-strong);
+		background: linear-gradient(90deg, rgba(34, 211, 238, 0.04), transparent 40%, transparent 60%, rgba(251, 191, 36, 0.04));
+		mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+	}
+
+	.marquee-inner {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 2.5rem;
+		padding: 0.85rem 0;
+		width: max-content;
+		animation: scroll 55s linear infinite;
+	}
+
+	.item {
+		flex-shrink: 0;
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--text-dim);
+	}
+
+	.item::after {
+		content: "·";
+		margin-left: 2.5rem;
+		opacity: 0.35;
+	}
+
+	@keyframes scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marquee-inner {
+			animation: none;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100%;
+			max-width: var(--max);
+			margin: 0 auto;
+			padding: 0.85rem 1.35rem;
+			gap: 0.35rem 1rem;
+		}
+
+		.item::after {
+			content: none;
+		}
+	}
+</style>
