@@ -4,6 +4,8 @@ export const site = {
 	description:
 		"Full-stack engineer, product builder, Velora & SIONA — TypeScript, NestJS, Next.js, cloud & AI/ML. AWS Cloud Club co-lead & technical lead. Nairobi, Kenya.",
 	url: "https://njaji-sibona.pages.dev",
+	/** Public path under `public/` — favicon, nav, hero */
+	avatar: "/profile.png",
 	author: "Njaji Samson Sibona",
 	roleLines: [
 		"Full-stack engineer",
