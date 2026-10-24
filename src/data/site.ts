@@ -43,7 +43,7 @@ export const heroHook =
 	"I design and ship full-stack products: marketplaces, internal tools, and AI-backed systems — with the same rigor for UX, APIs, and data models.";
 
 export const intro =
-	"I build production web platforms, APIs, and data-backed products with a bias for clarity and shipping. Velora Marketplace is my flagship commerce product in Kenya; SIONA is the long-horizon intelligence stack I co-founded — still in active R&D. On campus and in community, I serve as co-lead and technical lead for the AWS Cloud Club core team — I did not found the chapter; I help run programs, mentor builders, and keep technical quality high.";
+	"I build production web platforms, APIs, and data-backed products with a bias for clarity and shipping. Velora Marketplace is my flagship commerce product in Kenya; SIONA Technologies is the company I co-founded. On campus and in community, I serve as co-lead and technical lead for the AWS Cloud Club core team — I did not found the chapter; I help run programs, mentor builders, and keep technical quality high.";
 
 /** Scrolling tech strip — reads like a real portfolio “stack cloud”, not a CV line */
 export const stackMarquee = [
