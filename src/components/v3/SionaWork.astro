@@ -1,0 +1,158 @@
+---
+const products = [
+  {
+    name: "Weza AI",
+    domain: "INTELLIGENT BUSINESS TOOLS",
+    summary: "WhatsApp-native business assistance for recording sales, expenses and receipts through conversation, voice and images.",
+    status: "Live",
+    tags: ["AI", "WhatsApp", "English & Kiswahili"],
+    url: "https://weza.sionaglobal.com",
+    action: "Explore Weza AI",
+    featured: true,
+    symbol: "W"
+  },
+  {
+    name: "SIONA APA Dashboard",
+    domain: "MARKET ANALYSIS SYSTEMS",
+    summary: "An evidence-led analytical workspace for reviewing market structure, liquidity and validated closed-candle data. No trade execution or guaranteed returns.",
+    status: "Live",
+    tags: ["Market data", "WebSocket", "Analytics"],
+    url: "https://apa.sionaglobal.com/preview",
+    action: "View public preview",
+    featured: true,
+    symbol: "A"
+  },
+  {
+    name: "Jenga Elimu",
+    domain: "EDUCATION PLATFORMS",
+    summary: "Education operations software designed around staff, learners, guardians and institutional workflows.",
+    status: "Public platform",
+    tags: ["Education", "Workflows", "Platforms"],
+    url: "https://jengaelimu.co.ke",
+    action: "Visit platform",
+    featured: true,
+    symbol: "J"
+  },
+  {
+    name: "Kitara Foundation",
+    domain: "SOCIAL IMPACT",
+    summary: "A digital platform for programme discovery, giving, impact communication and confidential safeguarding journeys.",
+    status: "Live",
+    tags: ["Nonprofit", "Safeguarding"],
+    url: "https://sionaglobal.com/work",
+    action: "View company case study",
+    featured: false,
+    symbol: "K"
+  },
+  {
+    name: "Betha Academy",
+    domain: "EDUCATION & ADMISSIONS",
+    summary: "A school-facing platform presenting learning, admissions, facilities and practical information for families.",
+    status: "Live",
+    tags: ["Web platform", "Education"],
+    url: "https://sionaglobal.com/work",
+    action: "View company case study",
+    featured: false,
+    symbol: "B"
+  },
+  {
+    name: "SIONA Property",
+    domain: "PROPERTY OPERATIONS",
+    summary: "A prototype for rental, tenant, occupancy and maintenance operations with consolidated management visibility.",
+    status: "Prototype",
+    tags: ["Property", "Operational workflows"],
+    url: "https://sionaglobal.com/work",
+    action: "View prototype overview",
+    featured: false,
+    symbol: "P"
+  },
+  {
+    name: "Joyce Njaji HealthOps",
+    domain: "HEALTHCARE OPERATIONS",
+    summary: "A service-oriented web presence and operational support experience hosted and supported by SIONA.",
+    status: "Live",
+    tags: ["Healthcare operations", "Service web"],
+    url: "https://sionaglobal.com/work",
+    action: "View company case study",
+    featured: false,
+    symbol: "H"
+  },
+  {
+    name: "SIONA Commerce",
+    domain: "RETAIL INFRASTRUCTURE",
+    summary: "An in-development operating layer for point of sale, inventory and omnichannel retail visibility.",
+    status: "In development",
+    tags: ["Retail", "POS", "Inventory"],
+    url: "https://sionaglobal.com/work",
+    action: "View product overview",
+    featured: false,
+    symbol: "C"
+  },
+  {
+    name: "SIONA Technologies website",
+    domain: "CORPORATE WEB ENGINEERING",
+    summary: "The public-facing technology company platform connecting services, capabilities, product studies and business enquiries.",
+    status: "Live",
+    tags: ["Product design", "Web", "Cloud"],
+    url: "https://sionaglobal.com",
+    action: "Visit SIONA website",
+    featured: false,
+    symbol: "S"
+  }
+] as const;
+---
+<section id="siona-work" class="siona-section" aria-labelledby="siona-work-heading">
+ <div class="wrap">
+  <div class="siona-intro">
+   <div>
+    <p class="eyebrow">02 / SIONA PRODUCT ECOSYSTEM</p>
+    <h2 id="siona-work-heading">Real platforms.<br/><span class="serif">Built through my company.</span></h2>
+   </div>
+   <div class="siona-context">
+     <p>I co-founded SIONA Technologies and lead the engineering behind its software and intelligence portfolio. These are publicly documented platforms I have worked on building and shaping, not hypothetical case studies.</p>
+     <a href="https://sionaglobal.com/work" target="_blank" rel="noopener noreferrer">Explore the full company portfolio <span aria-hidden="true">↗</span></a>
+   </div>
+  </div>
+  <div class="product-grid">
+   {products.map((p, i) => (
+    <article class:list={["product-card", p.featured && "featured"]}>
+      <div class="product-topline"><span>{p.domain}</span><span class:list={["status", p.status==="Prototype" && "prototype", p.status==="In development" && "development"]}>{p.status}</span></div>
+      <div class="product-monogram" aria-hidden="true"><span>{p.symbol}</span><i>0{ i + 1 }</i></div>
+      <h3>{p.name}</h3>
+      <p class="product-summary">{p.summary}</p>
+      <div class="product-tags">{p.tags.map(tag => <span>{tag}</span>)}</div>
+      <a class="product-cta" href={p.url} target="_blank" rel="noopener noreferrer">{p.action} <span aria-hidden="true">↗</span></a>
+    </article>
+   ))}
+  </div>
+  <p class="note">Velora Marketplace is featured above. Product ownership and operating status belong to SIONA Technologies; descriptions follow the company's public portfolio. Confidential client systems and private research are intentionally omitted.</p>
+ </div>
+</section>
+<style>
+.siona-section{scroll-margin-top:100px;padding:104px 0 115px;background:var(--paper);border-block:1px solid var(--line);}
+.siona-intro{display:grid;grid-template-columns:1.12fr .88fr;align-items:end;gap:44px;margin-bottom:32px;}
+.siona-intro h2{font-size:clamp(38px,4.8vw,66px);font-weight:770;letter-spacing:-.064em;line-height:1.05;margin:16px 0 0;color:var(--ink);}
+.siona-context{padding-bottom:4px;max-width:500px;}
+.siona-context p{color:var(--ink-soft);font-size:14px;line-height:1.8;margin:0 0 15px;}
+.siona-context a{font-size:13px;font-weight:760;color:var(--blue);border-bottom:1px solid var(--blue);padding-bottom:6px;}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;}
+.product-card{display:flex;flex-direction:column;padding:25px;border:1px solid var(--line);background:var(--bg);border-radius:14px;min-height:310px;min-width:0;transition:border-color .2s,transform .2s;}
+.product-card:hover{border-color:var(--blue);transform:translateY(-2px);}
+.product-card.featured{background:linear-gradient(155deg,var(--accent-bg),var(--bg) 67%);border-color:color-mix(in srgb,var(--blue) 25%,var(--line));}
+.product-topline{display:flex;align-items:start;justify-content:space-between;gap:10px;font-size:9px;font-weight:780;letter-spacing:.08em;color:var(--muted);line-height:1.5;}
+.product-topline>span:first-child{max-width:62%;}
+.status{font-size:9px;white-space:nowrap;font-weight:700;color:var(--blue);border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:3px 8px;letter-spacing:0;}
+.status.prototype,.status.development{color:var(--muted);}
+.product-monogram{position:relative;width:64px;height:64px;margin:20px 0 18px;display:grid;place-items:center;border-radius:14px;background:var(--dark);color:#d4ebff;font:800 29px/1 var(--sans);box-shadow:inset 0 0 0 1px #ffffff28;}
+.product-monogram i{position:absolute;right:-9px;bottom:-7px;color:var(--blue);background:var(--paper);border:1px solid var(--line);padding:4px;border-radius:5px;font:600 9px var(--sans);font-style:normal;}
+.product-card h3{font-size:21px;letter-spacing:-.035em;line-height:1.2;margin:0 0 10px;color:var(--ink);}
+.product-summary{font-size:13px;line-height:1.7;color:var(--ink-soft);margin:0 0 18px;flex-grow:1;}
+.product-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px;}
+.product-tags span{font:500 10px/1.4 var(--sans);border:1px solid var(--line);border-radius:5px;padding:4px 6px;color:var(--muted);}
+.product-cta{font-size:12px;font-weight:770;color:var(--blue);align-self:start;}
+.product-cta:hover{text-decoration:underline;text-underline-offset:3px;}
+.note{font-size:12px;color:var(--muted);margin:23px 0 0;line-height:1.7;max-width:960px;}
+@media(max-width:1060px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.siona-intro{grid-template-columns:1fr;gap:14px;}}
+@media(max-width:680px){.siona-section{padding:72px 0 80px;}.product-grid{grid-template-columns:1fr;}.product-card{min-height:0;}.siona-intro h2{font-size:clamp(34px,9vw,48px);}}
+@media(prefers-reduced-motion:reduce){.product-card{transition:none;}.product-card:hover{transform:none;}}
+</style>
