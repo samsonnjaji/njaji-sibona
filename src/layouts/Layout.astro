@@ -1,42 +1,39 @@
 ---
 import "../styles/global.css";
-import { site } from "../data/site";
-
-interface Props {
-	title?: string;
-	description?: string;
-}
-
-const { title = site.title, description = site.description } = Astro.props;
-const canonical = site.url;
-const ogImage = new URL(site.avatar, canonical.endsWith("/") ? canonical : `${canonical}/`).href;
+const canonical = "https://njaji-sibona.pages.dev/";
+const title = "Samson Sibona Njaji | Software Engineer & CTO";
+const description = "Samson Sibona Njaji — software engineer, co-founder and CTO of SIONA Technologies. Practical systems, considered architecture, and selected work.";
+const person = {
+  "@context": "https://schema.org", "@type": "Person",
+  "name": "Samson Sibona Njaji", "url": canonical, "jobTitle": "Software Engineer, Co-founder and CTO",
+  "sameAs": ["https://github.com/samsonnjaji","https://www.linkedin.com/in/njaji-sibona"],
+  "affiliation": {"@type": "Organization","name":"SIONA Technologies","url":"https://sionaglobal.com"}
+};
 ---
-
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" href={site.avatar} />
-		<link rel="apple-touch-icon" href={site.avatar} />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:url" content={canonical} />
-		<meta property="og:image" content={ogImage} />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content={ogImage} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="canonical" href={canonical} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="en" data-theme="light">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#f7f8f5" />
+  <meta name="description" content={description} />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL("/assets/samson-portrait.webp", canonical).href} />
+  <meta property="og:image:alt" content="Samson Sibona Njaji, software engineer and co-founder" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL("/assets/samson-portrait.webp", canonical).href} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href={canonical} />
+  <script type="application/ld+json" set:html={JSON.stringify(person).replace(/</g, "\\u003c")} />
+  <title>{title}</title>
+ </head>
+ <body>
+  <slot />
+ </body>
 </html>

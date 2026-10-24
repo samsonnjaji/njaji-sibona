@@ -1,0 +1,4 @@
+<script is:inline>
+(()=>{const m=document.getElementById('menu-btn'),n=document.getElementById('mobile-nav');m.addEventListener('click',()=>{const show=n.style.display!=='block';n.style.display=show?'block':'none';m.setAttribute('aria-expanded',String(show));m.setAttribute('aria-label',show?'Close navigation':'Open navigation');});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.style.display='none';m.setAttribute('aria-expanded','false');}));window.addEventListener('resize',()=>{if(innerWidth>950){n.style.display='none';m.setAttribute('aria-expanded','false')}});const t=document.getElementById('theme-toggle');t.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=next; t.setAttribute('aria-label',next==='dark'?'Use light theme':'Use dark theme');});})();
+
+</script>
