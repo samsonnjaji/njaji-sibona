@@ -1,132 +1,43 @@
 ---
 import { site } from "../data/site";
-
 const links = [
-	{ href: "#experience", label: "About" },
-	{ href: "#skills", label: "Skills" },
-	{ href: "#projects", label: "Work" },
-	{ href: "#github", label: "GitHub" },
-	{ href: "#credentials", label: "Credentials" },
-	{ href: "#contact", label: "Contact" },
+ { href: "#about", label: "About" },
+ { href: "#work", label: "Work" },
+ { href: "#research", label: "Research" },
+ { href: "#journey", label: "Journey" },
+ { href: "#skills", label: "Skills" },
+ { href: "#contact", label: "Contact" }
 ];
 ---
-
-<header class="nav-wrap">
-	<nav class="nav" aria-label="Primary">
-		<a class="brand" href="#top">
-			<img
-				class="brand-avatar"
-				src={site.avatar}
-				alt=""
-				width="32"
-				height="32"
-				loading="eager"
-				decoding="async"
-			/>
-			<span class="brand-mono" aria-hidden="true">~/</span>
-			<span class="brand-name">{site.author.split(" ")[0].toLowerCase()}</span>
-		</a>
-		<ul class="nav-list">
-			{
-				links.map(({ href, label }) => (
-					<li>
-						<a href={href}>{label}</a>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
+<header class="site-header">
+  <nav class="site-nav container" aria-label="Primary navigation">
+    <a href="#top" class="wordmark" aria-label="Samson Sibona Njaji — Home"><span class="mark">S<span>.</span></span><span class="wordmark-name">SIBONA<small>ENGINEER / RESEARCHER</small></span></a>
+    <ul class="desktop-links">
+      {links.map(link => <li><a href={link.href}>{link.label}</a></li>)}
+    </ul>
+    <a class="nav-action" href={"mailto:" + site.email}>Let's connect <span aria-hidden="true">↗</span></a>
+    <details class="mobile-menu">
+      <summary aria-label="Toggle navigation">Menu <span aria-hidden="true">☰</span></summary>
+      <ul>{links.map(link => <li><a href={link.href}>{link.label}</a></li>)}</ul>
+    </details>
+  </nav>
 </header>
-
 <style>
-	.nav-wrap {
-		position: sticky;
-		top: 0;
-		z-index: 50;
-		backdrop-filter: blur(16px) saturate(1.2);
-		background: rgba(9, 9, 11, 0.82);
-		border-bottom: 1px solid var(--border-strong);
-	}
-
-	.nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		max-width: var(--max);
-		margin: 0 auto;
-		padding: 0.9rem 1.35rem;
-	}
-
-	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-weight: 600;
-		font-size: 0.95rem;
-		letter-spacing: -0.02em;
-		color: var(--text);
-		font-family: var(--font-mono);
-	}
-
-	.brand:hover {
-		color: var(--accent);
-	}
-
-	.brand-avatar {
-		width: 32px;
-		height: 32px;
-		border-radius: 50%;
-		object-fit: cover;
-		border: 1px solid var(--border-strong);
-		flex-shrink: 0;
-	}
-
-	.brand-mono {
-		color: var(--text-dim);
-		font-weight: 500;
-	}
-
-	.brand-name {
-		color: var(--accent);
-	}
-
-	.nav-list {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.35rem 1.1rem;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	.nav-list a {
-		font-size: 0.8rem;
-		font-weight: 500;
-		font-family: var(--font-mono);
-		letter-spacing: 0.02em;
-		color: var(--text-muted);
-		padding: 0.35rem 0;
-		border-bottom: 2px solid transparent;
-	}
-
-	.nav-list a:hover {
-		color: var(--text);
-		border-bottom-color: var(--accent);
-	}
-
-	@media (max-width: 640px) {
-		.nav {
-			flex-direction: column;
-			align-items: flex-start;
-		}
-
-		.nav-list {
-			gap: 0.35rem 0.75rem;
-		}
-
-		.nav-list a {
-			font-size: 0.76rem;
-		}
-	}
+.site-header{position:sticky;top:0;z-index:40;background:rgba(6,12,23,.87);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.site-nav{min-height:78px;display:flex;align-items:center;gap:30px}
+.wordmark{display:inline-flex;gap:12px;align-items:center;color:var(--text);text-decoration:none;flex-shrink:0}
+.mark{font-size:30px;font-weight:800;letter-spacing:-.08em;line-height:1}.mark span{color:var(--accent)}
+.wordmark-name{font-size:12px;letter-spacing:.18em;font-weight:800;line-height:1.35}.wordmark-name small{display:block;color:var(--text-dim);font-size:8px;letter-spacing:.16em}
+.desktop-links{display:flex;align-items:center;gap:23px;list-style:none;margin:0 auto;padding:0}
+.desktop-links a{font-size:13px;color:var(--text-muted);font-weight:600}
+.desktop-links a:hover{color:var(--text)}
+.nav-action{white-space:nowrap;font-size:13px;font-weight:700;color:#06101e;background:linear-gradient(110deg,#88b8ff,#49dcf0);border-radius:8px;padding:11px 17px}
+.nav-action:hover{color:#06101e;filter:brightness(1.1)}
+.mobile-menu{display:none;position:relative}
+.mobile-menu summary{cursor:pointer;list-style:none;padding:9px 12px;border:1px solid var(--border-strong);border-radius:8px;font-weight:600}
+.mobile-menu summary::-webkit-details-marker{display:none}
+.mobile-menu ul{position:absolute;top:100%;right:0;width:205px;list-style:none;background:#0a1425;border:1px solid var(--border-strong);border-radius:12px;padding:10px 14px;box-shadow:0 24px 50px #0009}
+.mobile-menu li a{display:block;padding:10px 3px;color:var(--text)}
+@media(max-width:980px){.desktop-links{gap:12px}.desktop-links a{font-size:12px}}
+@media(max-width:760px){.site-nav{min-height:69px}.desktop-links,.nav-action{display:none}.mobile-menu{display:block;margin-left:auto}}
 </style>
