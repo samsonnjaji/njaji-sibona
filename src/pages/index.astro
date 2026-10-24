@@ -1,28 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
-import Hero from "../components/Hero.astro";
-import TechStrip from "../components/TechStrip.astro";
-import AboutSection from "../components/AboutSection.astro";
-import Skills from "../components/Skills.astro";
-import Projects from "../components/Projects.astro";
-import GitHubSection from "../components/GitHubSection.astro";
-import Contact from "../components/Contact.astro";
-import Credentials from "../components/Credentials.astro";
-import Footer from "../components/Footer.astro";
+import Header from "../components/v3/Header.astro";
+import Hero from "../components/v3/Hero.astro";
+import Proof from "../components/v3/Proof.astro";
+import SelectedWork from "../components/v3/SelectedWork.astro";
+import Approach from "../components/v3/Approach.astro";
+import Leadership from "../components/v3/Leadership.astro";
+import Research from "../components/v3/Research.astro";
+import Capabilities from "../components/v3/Capabilities.astro";
+import About from "../components/v3/About.astro";
+import Contact from "../components/v3/Contact.astro";
+import Interactions from "../components/v3/Interactions.astro";
 ---
-
 <Layout>
-	<Nav />
-	<main>
-		<Hero />
-		<TechStrip />
-		<AboutSection />
-		<Skills />
-		<Projects />
-		<GitHubSection />
-		<Credentials />
-		<Contact />
-	</main>
-	<Footer />
+  <Header />
+  <main>
+    <Hero />
+    <Proof />
+    <SelectedWork />
+    <Approach />
+    <Leadership />
+    <Research />
+    <Capabilities />
+    <About />
+    <Contact />
+  </main>
+  <Interactions />
 </Layout>
