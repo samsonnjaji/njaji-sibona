@@ -1,78 +1,28 @@
 ---
-import { intro } from "../data/site";
+import { intro, site } from "../data/site";
+const pillars = [
+ { number:"01", title:"Build", body:"Design, develop and maintain web applications, services and data-backed workflows." },
+ { number:"02", title:"Explore", body:"Ask rigorous questions about applied intelligence, learning and dependable AI systems." },
+ { number:"03", title:"Connect", body:"Share knowledge through technical leadership, mentorship and collaborative engineering." }
+];
 ---
-
-<section id="experience" class="about band" aria-labelledby="about-heading">
-	<div class="inner">
-		<div class="head">
-			<span class="kicker">About</span>
-			<h2 id="about-heading" class="h2">The longer version</h2>
-		</div>
-		<div class="card">
-			<div class="glow" aria-hidden="true" />
-			<p class="intro">{intro}</p>
-		</div>
-	</div>
+<section id="about" class="about-section section" aria-labelledby="about-title">
+ <div class="container about-grid">
+  <div>
+   <p class="section-kicker">01 / ABOUT ME</p>
+   <h2 id="about-title" class="section-title">A builder by practice.<br/><span>A learner by nature.</span></h2>
+   <p class="about-body">{intro}</p>
+   <a class="text-link" href={site.social.linkedin} target="_blank" rel="noopener noreferrer">More about my journey <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="pillar-grid">{pillars.map(p => <article class="pillar"><span class="pillar-num">{p.number}</span><h3>{p.title}</h3><p>{p.body}</p></article>)}</div>
+ </div>
 </section>
-
 <style>
-	.about {
-		scroll-margin-top: 5rem;
-	}
-
-	.inner {
-		max-width: var(--max);
-		margin: 0 auto;
-		padding: 3rem 1.35rem;
-	}
-
-	.head {
-		margin-bottom: 1.25rem;
-	}
-
-	.kicker {
-		display: block;
-		margin-bottom: 0.5rem;
-		font-family: var(--font-mono);
-		font-size: 0.72rem;
-		font-weight: 500;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--accent);
-	}
-
-	.h2 {
-		margin: 0;
-		font-size: clamp(1.35rem, 2.5vw, 1.65rem);
-		font-weight: 650;
-		letter-spacing: -0.03em;
-	}
-
-	.card {
-		position: relative;
-		border-radius: var(--radius);
-		padding: 1.25rem 1.35rem 1.35rem;
-		background: var(--bg-elevated);
-		border: 1px solid var(--border-strong);
-		overflow: hidden;
-	}
-
-	.glow {
-		position: absolute;
-		top: -40%;
-		right: -20%;
-		width: 55%;
-		height: 180%;
-		background: radial-gradient(circle, rgba(34, 211, 238, 0.12), transparent 65%);
-		pointer-events: none;
-	}
-
-	.intro {
-		position: relative;
-		margin: 0;
-		font-size: 1.02rem;
-		line-height: 1.75;
-		color: var(--text-muted);
-		max-width: 68ch;
-	}
+.about-section{padding:100px 0}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:85px;align-items:center}
+.section-title span{color:#7eaedc}.about-body{color:var(--text-muted);line-height:1.85;max-width:580px;font-size:16px}
+.text-link{font-size:14px;font-weight:750;display:inline-flex;gap:12px;margin-top:12px}
+.pillar-grid{display:grid;gap:12px}.pillar{position:relative;display:grid;grid-template-columns:45px 130px 1fr;gap:14px;align-items:center;border:1px solid var(--border-strong);background:linear-gradient(120deg,#111d2e,#0b1625);border-radius:14px;padding:22px 24px}
+.pillar-num{font-family:var(--font-mono);color:#6cb5e3;font-size:11px}.pillar h3{font-size:19px;margin:0}.pillar p{color:var(--text-muted);font-size:13px;line-height:1.55;margin:0}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:35px}.about-section{padding:68px 0}}
+@media(max-width:580px){.pillar{grid-template-columns:28px 1fr;gap:5px 13px;padding:19px}.pillar p{grid-column:2;}.pillar h3{font-size:18px}}
 </style>

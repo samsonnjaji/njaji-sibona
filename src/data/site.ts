@@ -1,35 +1,24 @@
-/** Central content for the portfolio — edit here to update the site. */
+/** Public-facing portfolio content. Keep undisclosed research details out of this public repository. */
 export const site = {
-	title: "Njaji Samson Sibona | Software Engineer",
-	description:
-		"Full-stack engineer, product builder, Velora & SIONA — TypeScript, NestJS, Next.js, cloud & AI/ML. AWS Cloud Club co-lead & technical lead. Nairobi, Kenya.",
-	url: "https://njaji-sibona.pages.dev",
-	/** Public path under `public/` — favicon, nav, hero */
-	avatar: "/profile.png",
-	author: "Njaji Samson Sibona",
-	roleLines: [
-		"Full-stack engineer",
-		"Co-Lead & Tech Lead · AWS Cloud Club",
-		"Founder — Velora & SIONA",
-	],
-	location: "Nairobi, Kenya",
-	email: "njajisamson@gmail.com",
-	emailSecondary: "njajisibona.dev@gmail.com",
-	phone: "+254 794 877 890",
-	social: {
-		github: "https://github.com/samsonnjaji",
-		linkedin: "https://www.linkedin.com/in/njaji-sibona",
-		credlyProfile: "https://www.credly.com/users/samson-njaji",
-		awsCloudClubCredly:
-			"https://www.credly.com/badges/2d026762-56e9-448f-9de1-f9ca62ae92db/public_url",
-		/** IBM / data science — Credly earned badge */
-		dataScienceCredly:
-			"https://www.credly.com/earner/earned/badge/1c762022-678c-4a23-8d3c-a59dfdfc4c3d",
-		/** NVIDIA — certificate on NVIDIA Learning */
-		nvidiaCertificate:
-			"https://learn.nvidia.com/certificates?id=_bvsqcx7SY-ggctVBxLhyQ",
-	},
-	githubUsername: "samsonnjaji",
+  title: "Njaji Samson Sibona | Software Engineer & Researcher",
+  description: "Samson Sibona Njaji — software engineer, co-founder and CTO of SIONA Technologies, exploring applied AI and building practical digital systems.",
+  url: "https://njaji-sibona.pages.dev",
+  avatar: "/profile.png",
+  author: "Njaji Samson Sibona",
+  displayName: "Samson Sibona Njaji",
+  location: "Nairobi, Kenya",
+  email: "njajisamson@gmail.com",
+  emailSecondary: "njajisibona.dev@gmail.com",
+  phone: "+254 794 877 890",
+  social: {
+    github: "https://github.com/samsonnjaji",
+    linkedin: "https://www.linkedin.com/in/njaji-sibona",
+    credlyProfile: "https://www.credly.com/users/samson-njaji",
+    awsCloudClubCredly: "https://www.credly.com/badges/2d026762-56e9-448f-9de1-f9ca62ae92db/public_url",
+    dataScienceCredly: "https://www.credly.com/earner/earned/badge/1c762022-678c-4a23-8d3c-a59dfdfc4c3d",
+    nvidiaCertificate: "https://learn.nvidia.com/certificates?id=_bvsqcx7SY-ggctVBxLhyQ"
+  },
+  githubUsername: "samsonnjaji"
 } as const;
 
 /** Filtered out of the live GitHub API list (client-side) — e.g. sensitive course repos */
@@ -39,11 +28,9 @@ export const githubExcludedRepoSlugs = ["jenga-elimu-platform"] as const;
 export const githubRepoBoostFirst = ["velora"] as const;
 
 /** Short hero hook — long story lives in About */
-export const heroHook =
-	"I design and ship full-stack products: marketplaces, internal tools, and AI-backed systems — with the same rigor for UX, APIs, and data models.";
+export const heroHook = "I build dependable software and explore the questions that make intelligent systems possible.";
 
-export const intro =
-	"I build production web platforms, APIs, and data-backed products with a bias for clarity and shipping. Velora Marketplace is my flagship commerce product in Kenya; SIONA is the long-horizon intelligence stack I co-founded — still in active R&D. On campus and in community, I serve as co-lead and technical lead for the AWS Cloud Club core team — I did not found the chapter; I help run programs, mentor builders, and keep technical quality high.";
+export const intro = "I am a software engineer and co-founder & CTO of SIONA Technologies. My work spans applications, APIs, cloud systems, and early-stage applied AI exploration. I founded Velora Marketplace, contribute to technical community learning, and approach research with curiosity and rigorous experimentation.";
 
 /** Scrolling tech strip — reads like a real portfolio “stack cloud”, not a CV line */
 export const stackMarquee = [
@@ -86,9 +73,9 @@ export const stackMarquee = [
 ] as const;
 
 export const heroStats = [
-	{ label: "Products", value: "Velora · SIONA · client work" },
-	{ label: "Community", value: "AWS Cloud Club co-lead" },
-	{ label: "Stack", value: "TS · Nest · Next · Postgres" },
+  { label: "Focus", value: "Software systems" },
+  { label: "Research", value: "Applied intelligence" },
+  { label: "Community", value: "AWS Cloud Club" }
 ] as const;
 
 export const skillGroups = [
@@ -212,51 +199,42 @@ export const credentials = [
 
 /** `nda` = no public repo; `inDevelopment` = still building, not NDA */
 export const projects = [
-	{
-		title: "Velora Marketplace",
-		description:
-			"A hybrid multi-vendor ecommerce platform built around trust, quality, and reliable transactions. Verified sellers across Kenya onboard, list products, manage inventory, and serve customers through secure checkout, order workflows, and wallet-aware payments — with vendor growth tools, analytics, and admin controls.",
-		tags: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Payments", "Multi-vendor"],
-		primaryUrl: "https://velorasiona.com",
-		primaryLabel: "Live product",
-		githubUrl: "https://github.com/samsonnjaji/velora",
-		githubLabel: "Source",
-		featured: true,
-	},
-	{
-		title: "SIONA",
-		description:
-			"A synthetic global brain in development: a human-hybrid intelligence platform combining perception, memory, reasoning, learning, and action into one evolving cognitive system — a persistent intelligence layer for software, automation, robotics, and human-centered decision systems.",
-		tags: ["AI/ML", "Systems design", "Co-founder", "In development"],
-		inDevelopment: true,
-	},
-	{
-		title: "Property management system",
-		description:
-			"End-to-end web platform for portfolios, units, tenants, lease lifecycles, maintenance requests, and owner or agency dashboards — role-based access, notifications, and operational reporting tailored to real estate workflows.",
-		tags: ["Web app", "TypeScript", "REST APIs", "PostgreSQL", "RBAC"],
-		nda: true,
-	},
-	{
-		title: "Internal ops & stakeholder dashboards",
-		description:
-			"Custom reporting and workflow tools for client teams: KPI views, approvals, and secure data hand-offs between departments. Built for clarity and auditability under real-world operational constraints.",
-		tags: ["Dashboards", "TypeScript", "APIs", "Analytics"],
-		nda: true,
-	},
-	{
-		title: "ML evaluation & data-pipeline tooling",
-		description:
-			"Internal tooling for dataset handling, model evaluation runs, and quality metrics — supporting structured feedback loops and reproducible experiments for applied ML work.",
-		tags: ["Python", "ML ops", "Pipelines", "QA metrics"],
-		nda: true,
-	},
-	{
-		title: "Ego Sum Venatus",
-		description:
-			"A 2D platformer with physics, collision handling, enemy behaviour, and multi-level progression — demonstrating game programming fundamentals and disciplined engineering.",
-		tags: ["C++", "SFML", "Game dev"],
-		primaryUrl: "https://github.com/samsonnjaji",
-		primaryLabel: "GitHub profile",
-	},
+  {
+    title: "Velora Marketplace",
+    category: "Product engineering",
+    description: "A multi-vendor commerce platform focused on trusted seller experiences, order workflows and reliable application architecture.",
+    tags: ["Next.js", "NestJS", "TypeScript", "PostgreSQL"],
+    primaryUrl: "https://velorasiona.com",
+    primaryLabel: "Visit product",
+    featured: true
+  },
+  {
+    title: "SIONA Technologies",
+    category: "Company · Co-founder & CTO",
+    description: "The technology company I co-founded, building software and intelligent systems with a focus on practical engineering and long-term innovation.",
+    tags: ["Engineering", "Cloud", "Technology leadership"],
+    primaryUrl: "https://sionaglobal.com",
+    primaryLabel: "Company website"
+  },
+  {
+    title: "Sibona AI",
+    category: "Independent exploration · Early-stage",
+    description: "A public window into my exploration of applied AI, learning and dependable systems. Experiments are ongoing; unpublished research methods and results remain private.",
+    tags: ["Applied AI", "Learning systems", "Experiments"],
+    inDevelopment: true
+  },
+  {
+    title: "Property management platform",
+    category: "Selected client work · Confidential",
+    description: "Role-aware tenant, lease and operations workflows with database-backed reporting. Client and implementation details are protected.",
+    tags: ["REST APIs", "PostgreSQL", "RBAC"],
+    nda: true
+  },
+  {
+    title: "ML evaluation workflows",
+    category: "Applied ML · Confidential",
+    description: "Python-based tooling for dataset handling, evaluation runs and reproducible quality checks, with confidential implementation details withheld.",
+    tags: ["Python", "Pandas", "Evaluation"],
+    nda: true
+  }
 ] as const;

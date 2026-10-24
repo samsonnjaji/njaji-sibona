@@ -1,0 +1,21 @@
+---
+const chapters = [
+ { year:"2026 — Present",role:"Co-founder & CTO",place:"SIONA Technologies",description:"Co-leading a Kenyan technology company, shaping technical strategy and building practical software systems." },
+ { year:"2023 — Present",role:"Founder & Software Engineer",place:"Velora Marketplace",description:"Developing a multi-vendor commerce platform across product interfaces, backend services and data workflows." },
+ { year:"2025 — Present",role:"Co-lead & Technical Lead",place:"AWS Cloud Club · Core team",description:"Supporting hands-on learning, mentorship and technical community initiatives." },
+ { year:"2023 — 2026",role:"BSc Software Development",place:"KCA University",description:"Academic grounding in programming, software engineering, machine learning and intelligent systems." }
+];
+---
+<section id="journey" class="journey-section section" aria-labelledby="journey-title"><div class="container journey-grid">
+ <div><p class="section-kicker">04 / JOURNEY</p><h2 id="journey-title" class="section-title">Learning through <span>building.</span></h2><p class="section-lead">Product work, leadership and formal study have shaped how I approach engineering.</p></div>
+ <ol class="timeline">{chapters.map(ch => <li><p class="timeline-date">{ch.year}</p><h3>{ch.role}</h3><p class="timeline-place">{ch.place}</p><p class="timeline-desc">{ch.description}</p></li>)}</ol>
+</div></section>
+<style>
+.journey-section{padding:85px 0;background:#091625;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.journey-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}.journey-grid .section-title span{color:#7cb0e0}
+.timeline{list-style:none;margin:0;padding:0 0 0 28px;border-left:1px solid #5184ad66}
+.timeline li{position:relative;padding:0 0 34px 15px}.timeline li:last-child{padding-bottom:0}.timeline li::before{content:"";position:absolute;left:-34px;top:6px;width:11px;height:11px;border-radius:50%;background:#83d9ef;border:3px solid #10243c}
+.timeline-date{font:11px var(--font-mono);letter-spacing:.08em;color:#7cc1ee;margin:0 0 10px}
+.timeline h3{font-size:20px;margin:0 0 4px}.timeline-place{color:#d3e2f4;font-weight:650;margin:0 0 8px;font-size:13px}.timeline-desc{color:var(--text-muted);margin:0;max-width:600px;font-size:14px;line-height:1.65}
+@media(max-width:800px){.journey-grid{grid-template-columns:1fr;gap:28px}.journey-section{padding:65px 0}}
+</style>

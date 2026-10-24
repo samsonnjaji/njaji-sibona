@@ -1,42 +1,42 @@
 ---
 import "../styles/global.css";
 import { site } from "../data/site";
-
-interface Props {
-	title?: string;
-	description?: string;
-}
-
+interface Props { title?: string; description?: string; }
 const { title = site.title, description = site.description } = Astro.props;
-const canonical = site.url;
-const ogImage = new URL(site.avatar, canonical.endsWith("/") ? canonical : `${canonical}/`).href;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL(site.avatar, site.url).href;
+const personSchema = {
+ "@context":"https://schema.org", "@type":"Person", name:site.displayName,
+ url:site.url, image:ogImage, jobTitle:"Software Engineer",
+ sameAs:[site.social.github, site.social.linkedin],
+ worksFor:{ "@type":"Organization", name:"SIONA Technologies", url:"https://sionaglobal.com" }
+};
 ---
-
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" href={site.avatar} />
-		<link rel="apple-touch-icon" href={site.avatar} />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:url" content={canonical} />
-		<meta property="og:image" content={ogImage} />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content={ogImage} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="canonical" href={canonical} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <meta name="theme-color" content="#07111e" />
+ <meta name="generator" content={Astro.generator} />
+ <meta name="description" content={description} />
+ <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+ <link rel="canonical" href={canonical} />
+ <meta property="og:type" content="profile" />
+ <meta property="og:title" content={title} />
+ <meta property="og:description" content={description} />
+ <meta property="og:url" content={canonical} />
+ <meta property="og:image" content={ogImage} />
+ <meta property="og:image:alt" content="Portrait of Samson Sibona Njaji" />
+ <meta name="twitter:card" content="summary_large_image" />
+ <meta name="twitter:title" content={title} />
+ <meta name="twitter:description" content={description} />
+ <meta name="twitter:image" content={ogImage} />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+ <script type="application/ld+json" set:html={JSON.stringify(personSchema).replace(/</g,"\\u003c")} />
+ <title>{title}</title>
+</head>
+<body><slot /></body>
 </html>
